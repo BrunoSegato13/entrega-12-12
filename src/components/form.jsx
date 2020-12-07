@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import users from '../users.json';
 
 function Form() {
 
   const [user, setUser] = useState({});
 
+  const [userTable, setuserTable] = useState(users);
   
 
   function onChange(event){
@@ -15,8 +17,19 @@ function Form() {
   function onSubmit(event){
 
     event.preventDefault();
-    console.log(user)
+    users.push(user)
+    //setuserTable(users);
+    //console.log(users)
+    console.log(userTable);
+   
   }
+
+  useEffect(()=>{
+    setuserTable(users);
+  }, [onSubmit]);
+  
+
+
 
 
   return (
@@ -56,6 +69,26 @@ function Form() {
             <button type="submit">Salvar</button>
           </div>
         </form>
+      </div>
+      <div>
+        <table>
+        <thead>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Idade</th>
+        </thead>
+        <tbody>
+          {userTable.map((users, index)=>{
+             return(
+              <tr key={index}>
+                <td>{users.name}</td>
+                <td>{users.email}</td>
+                <td>{users.age}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+        </table>
       </div>
     </>
   )
