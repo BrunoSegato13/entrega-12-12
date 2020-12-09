@@ -2,12 +2,12 @@
   {
     "name": "Bruno 1",
     "email": "bruno1@teste.com",
-    "age": 26
+    "age": "26"
   },
   {
     "name": "Bruno 2",
     "email": "bruno1@teste.com",
-    "age": 23
+    "age":"23"
   },
   {
     "name": "Bruno 3",

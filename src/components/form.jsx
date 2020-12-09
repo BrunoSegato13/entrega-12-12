@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import users from '../users.json';
 
 function Form() {
@@ -9,28 +9,22 @@ function Form() {
   
 
   function onChange(event){
+
     const {name, value} = event.target;
-   
     setUser({...user, [name]: value});
+    //presenter requisições http
+  
   }
 
   function onSubmit(event){
 
     event.preventDefault();
-    users.push(user)
-    //setuserTable(users);
-    //console.log(users)
+    
+    // const copyUsers = users;
+    // copyUsers.push(user);
+    setuserTable([...users, user]); //spread 
     console.log(userTable);
-   
   }
-
-  useEffect(()=>{
-    setuserTable(users);
-  }, [onSubmit]);
-  
-
-
-
 
   return (
     <>
@@ -50,7 +44,7 @@ function Form() {
             <span>Email:</span>
               <input
                 id='email'
-                type="text"
+                type="email"
                 name="email"
                 onChange={onChange}
               />
@@ -60,7 +54,7 @@ function Form() {
               <input
                 id='age'
                 type='number'
-                name="age"
+                name='age'
                 onChange={onChange}
               />
             </label>
@@ -78,12 +72,12 @@ function Form() {
           <th>Idade</th>
         </thead>
         <tbody>
-          {userTable.map((users, index)=>{
+          {userTable.map((user, index)=>{
              return(
               <tr key={index}>
-                <td>{users.name}</td>
-                <td>{users.email}</td>
-                <td>{users.age}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.age}</td>
               </tr>
             )
           })}
